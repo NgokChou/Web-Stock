@@ -2,6 +2,6 @@ import { Stock } from './stock';
 
 describe('Stock', () => {
   it('should create an instance', () => {
-    expect(new Stock('Apple', 'AAPL', 100, 120)).toBeTruthy();
+    expect(new Stock('Testuto Company', 'TC', 67, 100)).toBeTruthy();
   });
 });
