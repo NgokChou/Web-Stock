@@ -11,7 +11,7 @@ export class StockItem {
   stock: Stock = new Stock('Apple', 'AAPL', 100, 120);
 
   toggleFavorite(event: Event) {
-    this.stock.favorite=true;
+    this.stock.favorite = !this.stock.favorite;
     console.log('Add to fav');
   }
 }
