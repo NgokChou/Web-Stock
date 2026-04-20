@@ -1,1 +1,44 @@
-<p>create-stock works!</p>
+<form #stockForm="ngForm">
+
+  <!-- NAME -->
+  <input type="text"
+         name="name"
+         ngModel
+         required
+         #name="ngModel"
+         [ngClass]="{
+           'valid': name.valid,
+           'invalid': name.invalid && name.touched
+         }"
+         placeholder="Stock Name">
+
+  <!-- CODE -->
+  <input type="text"
+         name="code"
+         ngModel
+         #code="ngModel"
+         [ngClass]="{
+           'default': !code.dirty,
+           'changed': code.dirty
+         }"
+         placeholder="Stock Code">
+
+  <!-- PRICE -->
+  <input type="number"
+         name="price"
+         ngModel
+         #price="ngModel"
+         [ngClass]="{
+           'untouched': !price.touched,
+           'touched': price.touched
+         }"
+         placeholder="Price">
+
+  <!-- EXCHANGE -->
+  <select name="exchange" ngModel>
+    <option value="NASDAQ">NASDAQ</option>
+    <option value="NYSE">NYSE</option>
+    <option value="OTHER"></option>
+  </select>
+
+</form>

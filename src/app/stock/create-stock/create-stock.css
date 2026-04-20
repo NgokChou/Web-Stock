@@ -1,0 +1,23 @@
+.valid {
+  background-color: lightgreen;
+}
+
+.invalid {
+  background-color: pink;
+}
+
+.default {
+  background-color: lightgreen;
+}
+
+.changed {
+  background-color: pink;
+}
+
+.untouched {
+  background-color: lightgreen;
+}
+
+.touched {
+  background-color: pink;
+}

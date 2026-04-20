@@ -8,7 +8,7 @@ import { Stock } from '../../model/stock';
   styleUrl: './stock-item.css',
 })
 export class StockItem {
-  stock: Stock = new Stock('Apple', 'AAPL', 100, 120);
+  stock: Stock = new Stock('Apple', 'AAPL', 100, 120, 'NASDAQ');
 
   toggleFavorite(event: Event) {
     this.stock.favorite = !this.stock.favorite;
