@@ -11,19 +11,18 @@ import { NgForm } from '@angular/forms';
 })
 export class CreateStock {
   public stock!: Stock;
-  public confirm: boolean = false;
+  public confirmed: boolean = false;
 
   constructor(){
     this.stock = new Stock('test',"",0,0,"NASDAQ");
   }
 
-  setStockPrice(price: number){ {
+  setStockPrice(price: number){ 
     this.stock.price=price;
     this.stock.previousPrice=price;
   }
 
-  taoStock(){
-    console.log('Creating Stock', this.stock);
-  }
+  createStock() {
+  console.log('Đang tạo Stock', this.stock);
 }
 }

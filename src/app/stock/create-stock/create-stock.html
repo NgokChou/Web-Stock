@@ -1,10 +1,48 @@
 <h2>Create Stock Form</h2>
 
 <div class="form-group">
-    <form (ngSubmit)="taoStock()">
+    <form (ngSubmit)="createStock()">
+
         <div class="stock-name">
             <input type="text" placeholder="Stock Name"
-            name="stockName" [(ngModel)]>
+            name="stockName" [(ngModel)]="stock.name">
         </div>
+
+        <div class="stock-code">
+            <input type="text" placeholder="Stock Code"
+            name="stockCode" [(ngModel)]="stock.code">
+        </div>
+
+        <div class="stock-price">
+            <input type="number" placeholder="Stock Price"
+            name="stockPrice" [(ngModel)]="stock.price"
+            (ngModelChange)="setStockPrice($event)">
+        </div>
+
+        <div class="stock-exchange">
+
+            <div>
+                <input type="radio" name="stockExchange"
+                [(ngModel)]="stock.exchange" value="NYSE">NYSE
+            </div>
+
+            <div>
+                <input type="radio" name="stockExchange"
+                [(ngModel)]="stock.exchange" value="NASDAQ">NASDAQ
+            </div>
+
+            <div>
+                <input type="radio" name="stockExchange"
+                [(ngModel)]="stock.exchange" value="OTHER">OTHER
+            </div>
+        </div>
+
+        <div class="stock-confirm">
+            <input type="checkbox" name="stockConfirm"
+            [(ngModel)]="confirmed">
+            I confirm that the infomation provided is correct bruh!
+        </div>
+
+        <button type="submit" [disabled]="!confirmed">Create</button>
     </form>
 </div>
