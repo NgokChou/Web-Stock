@@ -1,24 +1,16 @@
 <h2>Create Stock Form</h2>
 
 <div class="form-group">
-    <form (ngSubmit)="createStock()">
-        
-        <div>
-            The following element changes from green to red when it is invalid
-        </div>
+    <form [formGroup]="stockForm" (ngSubmit)="onSubmit()">
 
         <div class="stock-name">
-            <input type="text" placeholder="Stock Name" required
-            name="stockName" [(ngModel)]="stock.name" #name="ngModel">
-        </div>
-
-        <div>
-            The following element changes from green to red when it has been modified
+            <input type="text" placeholder="Stock Name" 
+            name="stockName" formControlName="name">
         </div>
 
         <div class="stock-code">
             <input type="text" placeholder="Stock Code"
-            name="stockCode" [(ngModel)]="stock.code" #code="ngModel">
+            name="stockCode" [formControl]="codeControl">
         </div>
 
         <div>
@@ -27,8 +19,8 @@
 
         <div class="stock-price">
             <input type="number" placeholder="Stock Price"
-            name="stockPrice" [(ngModel)]="stock.price"
-            (ngModelChange)="setStockPrice($event)" #price="ngModel">
+            name="stockPrice" [formControl]="priceControl"
+            (ngModelChange)="setStockPrice($event)" >
         </div>
 
         <div class="stock-exchange">
