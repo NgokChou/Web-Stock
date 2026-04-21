@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Stock } from '../../model/stock';
 import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormControl, FormBuilder } from '@angular/forms';
+import { NgIf } from "../../../../node_modules/@angular/common/types/_common_module-chunk";
 @Component({
   selector: 'app-create-stock',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgIf],
   templateUrl: './create-stock.html',
   styleUrl: './create-stock.css',
 })
