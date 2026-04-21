@@ -27,7 +27,7 @@ export class CreateStock {
   onSubmit(){
      const formData = new FormData();
 
-    formData.append('name',  this.stockForm.get('name')?.value);
+    formData.append('name',  this.stockForm.get('name')?.value); //đóng gói
     formData.append('code',  this.stockForm.get('code')?.value);
     formData.append('price', String(this.stockForm.get('price')?.value));
 
