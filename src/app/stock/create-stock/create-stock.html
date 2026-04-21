@@ -6,9 +6,9 @@
         <div class="stock-name">
             <input type="text" placeholder="Stock Name" 
             name="stockName" formControlName="name">
-            <div *ngIf="stockForm.get('name').invalid && 
-            ( stockForm.get('name').dirty || 
-            stockForm.get('name').touched)">
+            <div *ngIf="stockForm.get('name')?.invalid && 
+            ( stockForm.get('name')?.dirty || 
+            stockForm.get('name')?.touched)">
             Name is required
             </div>
         </div>
@@ -16,13 +16,13 @@
         <div class="stock-code">
             <input type="text" placeholder="Stock Code"
             formControlName="code">
-            <div *ngIf="stockForm.get('code').invalid && 
-            ( stockForm.get('code').dirty || 
-            stockForm.get('code').touched)">
-            <div *ngIf="stockForm.get('code').errors.required">
+            <div *ngIf="stockForm.get('code')?.invalid && 
+            ( stockForm.get('code')?.dirty || 
+            stockForm.get('code')?.touched)">
+            <div *ngIf="stockForm.get('code')?.errors?.['required']">
                 Stock Code is required
             </div>
-            <div *ngIf="stockForm.get('code').errors.minlength">
+            <div *ngIf="stockForm.get('code')?.errors?.['minlength']">
                 Stock Code must be at least 2 characters
             </div>
             </div>
@@ -31,13 +31,13 @@
         <div class="stock-price">
             <input type="number" placeholder="Stock Price"
             formControlName="price">
-            <div *ngIf="stockForm.get('price').invalid && 
-            ( stockForm.get('price').dirty || 
-            stockForm.get('price').touched)">
-            <div *ngIf="stockForm.get('price').errors.required">
+            <div *ngIf="stockForm.get('price')?.invalid && 
+            ( stockForm.get('price')?.dirty || 
+            stockForm.get('price')?.touched)">
+            <div *ngIf="stockForm.get('price')?.errors?.['required']">
                 Stock Price is requied
             </div>
-            <div *ngIf="stockForm.get('price').errors.min">
+            <div *ngIf="stockForm.get('price')?.errors?.['min']">
                 Stock Price must be positive
             </div>
             </div>
