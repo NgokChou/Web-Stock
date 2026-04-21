@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Stock } from '../../model/stock';
 import { FormsModule } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-create-stock',
@@ -21,7 +22,7 @@ export class CreateStock {
     this.stock.previousPrice=price;
   }
 
-  createStock(){
+  taoStock(){
     console.log('Creating Stock', this.stock);
   }
 }
