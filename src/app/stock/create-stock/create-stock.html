@@ -31,20 +31,20 @@
         <div class="stock-price">
             <input type="number" placeholder="Stock Price"
             formControlName="price">
+            <div *ngIf="stockForm.get('price').invalid && 
+            ( stockForm.get('price').dirty || 
+            stockForm.get('price').touched)">
+            <div *ngIf="stockForm.get('price').errors.required">
+                Stock Price is requied
+            </div>
+            <div *ngIf="stockForm.get('price').errors.min">
+                Stock Price must be positive
+            </div>
+            </div>
         </div>
-
-        <div class="stock-exchange">
-        </div>
-
-        <div class="stock-confirm">
-            <input type="checkbox" name="stockConfirm"
-            [(ngModel)]="confirmed">
-            I confirm that the infomation provided is correct bruh!
-        </div>
-
-        <button type="submit" [disabled]="!confirmed">Create</button>
+        <button type="submit">Submit</button>
     </form>
 </div>
 
-<h4>Stock Name is {{stock | json}}</h4>
-<h4>Data has been confirmed: {{confirmed}}</h4>
+<h4>Form Control value: {{stockForm.value | json}}</h4>
+<h4>Form Control status: {{stockForm.status | json}}</h4>
