@@ -5,7 +5,7 @@
 
         <div class="stock-name">
             <input type="text" placeholder="Stock Name" 
-            name="stockName" formControlName="name">
+            formControlName="name">
             <div *ngIf="stockForm.get('name')?.invalid && 
             ( stockForm.get('name')?.dirty || 
             stockForm.get('name')?.touched)">
