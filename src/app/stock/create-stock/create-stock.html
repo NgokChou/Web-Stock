@@ -6,11 +6,26 @@
         <div class="stock-name">
             <input type="text" placeholder="Stock Name" 
             name="stockName" formControlName="name">
+            <div *ngIf="stockForm.get('name').invalid && 
+            ( stockForm.get('name').dirty || 
+            stockForm.get('name').touched)">
+            Name is required
+            </div>
         </div>
 
         <div class="stock-code">
             <input type="text" placeholder="Stock Code"
             formControlName="code">
+            <div *ngIf="stockForm.get('code').invalid && 
+            ( stockForm.get('code').dirty || 
+            stockForm.get('code').touched)">
+            <div *ngIf="stockForm.get('code').errors.required">
+                Stock Code is required
+            </div>
+            <div *ngIf="stockForm.get('code').errors.minlength">
+                Stock Code must be at least 2 characters
+            </div>
+            </div>
         </div>
 
         <div class="stock-price">
@@ -19,21 +34,6 @@
         </div>
 
         <div class="stock-exchange">
-
-            <div>
-                <input type="radio" name="stockExchange"
-                [(ngModel)]="stock.exchange" value="NYSE">NYSE
-            </div>
-
-            <div>
-                <input type="radio" name="stockExchange"
-                [(ngModel)]="stock.exchange" value="NASDAQ">NASDAQ
-            </div>
-
-            <div>
-                <input type="radio" name="stockExchange"
-                [(ngModel)]="stock.exchange" value="OTHER">OTHER
-            </div>
         </div>
 
         <div class="stock-confirm">

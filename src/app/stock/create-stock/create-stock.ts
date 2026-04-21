@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Stock } from '../../model/stock';
 import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-create-stock',
   imports: [ReactiveFormsModule],
@@ -9,17 +9,22 @@ import { FormControl } from '@angular/forms';
   styleUrl: './create-stock.css',
 })
 export class CreateStock {
-  public stockForm: FormGroup = new FormGroup({
-    name: new FormControl(null, Validators.required),
-    code: new FormControl(null, [Validators.required, Validators.minLength(2)]),
-    price: new FormControl(null, [Validators.required, Validators.min(0)])
-  });
+  public stockForm!: FormGroup;
 
-  constructor(){
+  constructor(private fb: FormBuilder) {
+    this.createForm();
   }
 
-  onSubmit() {
-    console.log('Giá trị Stock',this.stockForm.value);
+  createForm(){
+    this.stockForm = this.fb.group({
+      name: [null, Validators.required],
+      code: [null, [Validators.required, Validators.minLength(2)]],
+      price: [0, [Validators.required, Validators.min(0)]],
+    });
+  }
+
+  onSubmit(){
+    console.log('Giá trị stock', this.stockForm.value);
   }
   
 }
