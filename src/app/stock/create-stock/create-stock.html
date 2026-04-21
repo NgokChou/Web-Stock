@@ -9,7 +9,7 @@
 
         <div class="stock-name">
             <input type="text" placeholder="Stock Name" required
-            name="stockName" [(ngModel)]="stock.name">
+            name="stockName" [(ngModel)]="stock.name" #name="ngModel">
         </div>
 
         <div>
@@ -18,7 +18,7 @@
 
         <div class="stock-code">
             <input type="text" placeholder="Stock Code"
-            name="stockCode" [(ngModel)]="stock.code">
+            name="stockCode" [(ngModel)]="stock.code" #code="ngModel">
         </div>
 
         <div>
@@ -28,7 +28,7 @@
         <div class="stock-price">
             <input type="number" placeholder="Stock Price"
             name="stockPrice" [(ngModel)]="stock.price"
-            (ngModelChange)="setStockPrice($event)">
+            (ngModelChange)="setStockPrice($event)" #price="ngModel">
         </div>
 
         <div class="stock-exchange">
