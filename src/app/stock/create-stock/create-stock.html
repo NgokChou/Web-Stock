@@ -10,17 +10,12 @@
 
         <div class="stock-code">
             <input type="text" placeholder="Stock Code"
-            name="stockCode" [formControl]="codeControl">
-        </div>
-
-        <div>
-            The following element changes from green to red when it is visited by the user, regardless of change
+            formControlName="code">
         </div>
 
         <div class="stock-price">
             <input type="number" placeholder="Stock Price"
-            name="stockPrice" [formControl]="priceControl"
-            (ngModelChange)="setStockPrice($event)" >
+            formControlName="price">
         </div>
 
         <div class="stock-exchange">
