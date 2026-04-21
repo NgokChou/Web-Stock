@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input, Input } from '@angular/core';
 import { Stock } from '../../model/stock';
 
 @Component({
@@ -8,7 +8,7 @@ import { Stock } from '../../model/stock';
   styleUrl: './stock-item.css',
 })
 export class StockItem {
-  stock: Stock = new Stock('Apple', 'AAPL', 100, 120, 'NASDAQ');
+  @Input() stock!:Stock;
 
   toggleFavorite(event: Event) {
     this.stock.favorite = !this.stock.favorite;
