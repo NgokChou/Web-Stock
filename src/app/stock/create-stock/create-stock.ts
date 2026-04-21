@@ -28,5 +28,14 @@ export class CreateStock {
   onSubmit(){
     console.log('Giá trị stock', this.stockForm.value);
   }
-  
+
+ const formData = new FormData(); // BẮT BUỘC có dòng này
+
+  formData.append('name', this.stockForm.get('name')?.value);
+  formData.append('code', this.stockForm.get('code')?.value);
+  formData.append('price', String(this.stockForm.get('price')?.value));
+
+  formData.forEach((value, key) => {
+    console.log(key, value);
+  });
 }
