@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Stock } from '../../model/stock';
 import { FormsModule } from '@angular/forms';
-import { NgForm } from '@angular/forms';
-
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-create-stock',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './create-stock.html',
   styleUrl: './create-stock.css',
 })
