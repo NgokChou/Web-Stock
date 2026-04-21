@@ -3,6 +3,9 @@ import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormControl, FormBuilder } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { JsonPipe } from '@angular/common';
+import { Output, EventEmitter } from '@angular/core'; 
+import { Stock } from '../../model/stock';  
+
 @Component({
   selector: 'app-create-stock',
   imports: [ReactiveFormsModule, NgIf, JsonPipe],
@@ -10,8 +13,10 @@ import { JsonPipe } from '@angular/common';
   styleUrl: './create-stock.css',
 })
 export class CreateStock {
-  public stockForm!: FormGroup;
+  @Output() stockAdded = new EventEmitter<Stock>();
+  // ↑ "chuông thông báo" — khi submit sẽ phát lên cha
 
+  public stockForm!: FormGroup;
   constructor(private fb: FormBuilder) {
     this.createForm();
   }
@@ -24,17 +29,20 @@ export class CreateStock {
     });
   }
 
-  onSubmit(){
-     const formData = new FormData();
+  onSubmit() {
+    const formValue = this.stockForm.value;
 
-    formData.append('name',  this.stockForm.get('name')?.value); //đóng gói
-    formData.append('code',  this.stockForm.get('code')?.value);
-    formData.append('price', String(this.stockForm.get('price')?.value));
+    // Tạo object Stock từ dữ liệu form
+    const newStock = new Stock(
+      formValue.name,
+      formValue.code,
+      formValue.price,
+      formValue.price, // previousPrice = price
+      'NASDAQ'         // exchange mặc định
+    );
 
-    // In ra console để kiểm tra
-    formData.forEach((value, key) => {
-      console.log(key, value);
-    });
+    this.stockAdded.emit(newStock); // ← bấm chuông, gửi stock lên cha
+    this.stockForm.reset();         // ← reset form sau khi submit
   }
 }
 
