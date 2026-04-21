@@ -1,1 +1,7 @@
-<p>stock-list works!</p>
+<h2>Stock List</h2>
+
+<div *ngFor="let stock of stocks; let i = index">
+  <!-- Truyền từng stock xuống StockItemComponent qua @Input -->
+  <app-stock-item [stock]="stock"></app-stock-item>
+  <button (click)="onDeleteStock(i)">Xóa</button>
+</div>
