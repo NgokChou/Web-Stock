@@ -3,9 +3,10 @@ import { Stock } from '../../model/stock';
 import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormControl, FormBuilder } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 @Component({
   selector: 'app-create-stock',
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule, NgIf, JsonPipe],
   templateUrl: './create-stock.html',
   styleUrl: './create-stock.css',
 })
