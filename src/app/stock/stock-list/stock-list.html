@@ -1,8 +1,70 @@
-<h1>Stock Market App</h1>
+<div>
+  <!-- Ô tìm kiếm -->
+  <input
+    type="text"
+    placeholder="Tìm theo tên hoặc mã..."
+    [(ngModel)]="searchText"
+    (input)="onSearch()"
+    class="search-box"
+  />
 
-<div class="stock-grid">
-  <app-stock-item 
-    *ngFor="let stock of stocks"
-    [stock]="stock">
-  </app-stock-item>
+  <!-- Listview -->
+  <table class="stock-table">
+    <thead>
+      <tr>
+        <th>Tên</th>
+        <th>Mã</th>
+        <th>Giá</th>
+        <th>Sàn</th>
+        <th>Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let stock of filteredStocks">
+        <td>{{ stock.name }}</td>
+        <td>{{ stock.code }}</td>
+        <td [class.positive]="stock.price >= stock.previousPrice"
+            [class.negative]="stock.price < stock.previousPrice">
+          {{ stock.price }}
+        </td>
+        <td>{{ stock.exchange }}</td>
+        <td>
+          <button (click)="onDetail(stock)">Chi tiết</button>
+          <button (click)="onUpdate(stock)">Update</button>
+          <button (click)="onDelete(stock.code)">Xóa</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Không có kết quả -->
+  <p *ngIf="filteredStocks.length === 0">Không tìm thấy cổ phiếu nào.</p>
+
+  <!-- DIALOG -->
+  <div class="dialog-overlay" *ngIf="showDialog" (click)="onCloseDialog()">
+    <div class="dialog-box" (click)="$event.stopPropagation()">
+
+      <!-- CHI TIẾT -->
+      <ng-container *ngIf="dialogMode === 'detail' && selectedStock">
+        <h3>Chi tiết cổ phiếu</h3>
+        <p><strong>Tên:</strong> {{ selectedStock.name }}</p>
+        <p><strong>Mã:</strong> {{ selectedStock.code }}</p>
+        <p><strong>Giá hiện tại:</strong> {{ selectedStock.price }}</p>
+        <p><strong>Giá trước:</strong> {{ selectedStock.previousPrice }}</p>
+        <p><strong>Sàn:</strong> {{ selectedStock.exchange }}</p>
+        <button (click)="onCloseDialog()">Đóng</button>
+      </ng-container>
+
+      <!-- UPDATE -->
+      <ng-container *ngIf="dialogMode === 'update' && selectedStock">
+        <h3>Cập nhật cổ phiếu</h3>
+        <label>Tên: <input [(ngModel)]="selectedStock.name" /></label><br/>
+        <label>Giá: <input type="number" [(ngModel)]="selectedStock.price" /></label><br/>
+        <label>Sàn: <input [(ngModel)]="selectedStock.exchange" /></label><br/>
+        <button (click)="onSaveUpdate()">Lưu</button>
+        <button (click)="onCloseDialog()">Hủy</button>
+      </ng-container>
+
+    </div>
+  </div>
 </div>

@@ -4,10 +4,11 @@ import { StockList } from './stock/stock-list/stock-list';
 import { CreateStock } from './stock/create-stock/create-stock';
 import { StockItem } from './stock/stock-item/stock-item';
 import { StockService } from './services/stock';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [StockItem, CreateStock, StockList],
+  imports: [FormsModule, CreateStock, StockList],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
