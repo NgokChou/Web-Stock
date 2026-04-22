@@ -1,7 +1,8 @@
-<h2>Stock List</h2>
+<h1>Stock Market App</h1>
 
-<div *ngFor="let stock of stocks; let i = index">
-  <!-- Truyền từng stock xuống StockItemComponent qua @Input -->
-  <app-stock-item [stock]="stock"></app-stock-item>
-  <button (click)="onDeleteStock(i)">Xóa</button>
+<div class="stock-grid">
+  <app-stock-item 
+    *ngFor="let stock of stocks"
+    [stock]="stock">
+  </app-stock-item>
 </div>

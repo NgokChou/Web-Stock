@@ -1,13 +1,10 @@
 .stock-container {
-  display: inline-block;      /* để mỗi cái là 1 ô riêng */
   border: 1px solid #ccc;
   border-radius: 8px;
-
-  padding: 10px 15px;         /* tạo khoảng cách bên trong */
-  margin: 10px;               /* cách các ô khác */
-
-  text-align: center;         /* căn giữa chữ */
-  width: fit-content;         /* ô ôm nội dung */
+  padding: 10px;
+  /* Bỏ width cố định nếu có, để nó tự fill theo grid */
+  width: 100%;
+  box-sizing: border-box;
 }
 .positive {
   color: green;

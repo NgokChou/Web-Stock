@@ -1,5 +1,6 @@
 <h2>Create Stock Form</h2>
 
+<div *ngIf="message">{{ message }}</div>
 <div class="form-group">
     <form [formGroup]="stockForm" (ngSubmit)="onSubmit()">
 
@@ -42,9 +43,23 @@
             </div>
             </div>
         </div>
-        <button type="submit">Submit</button>
-    </form>
-</div>
+         <div>
+    <select formControlName="exchange">
+      <option value="NASDAQ">NASDAQ</option>
+      <option value="NSE">NSE</option>
+      <option value="NYSE">NYSE</option>
+    </select>
+    </div>
+  <div>
+    <input type="checkbox" formControlName="confirmed">
+    I confirm that the information provided above is accurate!
+  </div>
+
+  <button type="submit" [disabled]="!stockForm.get('confirmed')?.value">
+    Create
+  </button>
+
+</form>
 
 <h4>Form Control value: {{stockForm.value | json}}</h4>
 <h4>Form Control status: {{stockForm.status | json}}</h4>

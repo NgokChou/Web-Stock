@@ -14,7 +14,7 @@ import { Stock } from '../../model/stock';
 })
 export class CreateStock {
   @Output() stockAdded = new EventEmitter<Stock>();
-  // ↑ "chuông thông báo" — khi submit sẽ phát lên cha
+  message: string = '';
 
   public stockForm!: FormGroup;
   constructor(private fb: FormBuilder) {
@@ -26,6 +26,8 @@ export class CreateStock {
       name:  [null, Validators.required],
       code:  [null, [Validators.required, Validators.minLength(2)]],
       price: [null, [Validators.required, Validators.min(0)]],
+      exchange:  ['NASDAQ'],
+      confirmed: [false]
     });
   }
 
@@ -37,12 +39,13 @@ export class CreateStock {
       formValue.name,
       formValue.code,
       formValue.price,
-      formValue.price, // previousPrice = price
-      'NASDAQ'         // exchange mặc định
+      formValue.price,
+      formValue.exchange  
     );
 
-    this.stockAdded.emit(newStock); // ← bấm chuông, gửi stock lên cha
-    this.stockForm.reset();         // ← reset form sau khi submit
+      this.message = `Successfully created stock with stock code: ${formValue.code}`;
+    this.stockAdded.emit(newStock);
+    this.stockForm.reset({ exchange: 'NASDAQ', confirmed: false, price: 0 });
   }
 }
 

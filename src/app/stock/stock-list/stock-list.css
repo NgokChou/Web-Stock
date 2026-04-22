@@ -1,0 +1,7 @@
+.stock-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;        /* ← gap nhỏ thôi */
+  max-width: 600px; /* ← giới hạn chiều rộng tổng */
+  margin-bottom: 20px;
+}
