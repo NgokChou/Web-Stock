@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Stock } from './model/stock';
 import { StockList } from './stock/stock-list/stock-list';
 import { CreateStock } from './stock/create-stock/create-stock';
 import { StockItem } from './stock/stock-item/stock-item';
+import { StockService } from './services/stock';
 
 @Component({
   selector: 'app-root',
@@ -10,15 +11,16 @@ import { StockItem } from './stock/stock-item/stock-item';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
-  // Danh sách cổ phiếu đặt ở CHA — dùng chung cho cả 2 con
-  stocks: Stock[] = [
-    new Stock('Apple', 'AAPL', 100, 120, 'NASDAQ'),
-    new Stock('Google', 'GOOG', 200, 180, 'NASDAQ'),
-    new Stock('Microsoft', 'MSFT', 150, 140, 'NASDAQ'),
-  ];
+export class App implements OnInit{
+  stocks: Stock[] = [];
 
-  onStockAdded(stock: Stock) {
-    this.stocks.push(stock); // ← nhận từ CreateStock, đẩy xuống StockList
+   constructor(private stockService: StockService) {}
+
+  ngOnInit(): void {
+    // ② Gọi hàm getStocks(), nhận về Observable
+    this.stockService.getStocks()
+      .subscribe(stocks => {         // ③ "subscribe" = mở hộp thư ra đọc
+        this.stocks = stocks;        // ④ gán dữ liệu nhận được vào this.stocks
+      });
   } 
 }
