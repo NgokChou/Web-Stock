@@ -11,16 +11,24 @@ import { StockService } from './services/stock';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App implements OnInit{
+export class App implements OnInit {
   stocks: Stock[] = [];
 
-   constructor(private stockService: StockService) {}
+  constructor(private stockService: StockService) {}
 
   ngOnInit(): void {
-    // ② Gọi hàm getStocks(), nhận về Observable
     this.stockService.getStocks()
-      .subscribe(stocks => {         // ③ "subscribe" = mở hộp thư ra đọc
-        this.stocks = stocks;        // ④ gán dữ liệu nhận được vào this.stocks
+      .subscribe(stocks => {
+        this.stocks = stocks;
       });
-  } 
+  }  // ← đóng ngOnInit ở đây
+
+  onStockAdded(stock: Stock): void {  // ← method riêng, ngang hàng với ngOnInit
+    this.stockService.createStock(stock).subscribe({
+      next: () => {
+        this.stockService.getStocks().subscribe(s => this.stocks = s);
+      },
+      error: (err) => alert(err.message)
+    });
+  }
 }

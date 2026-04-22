@@ -1,2 +1,5 @@
-<app-stock-list [stocks]="stocks"></app-stock-list>
-<app-create-stock (stockAdded)="onStockAdded($event)"></app-create-stock>   
+<div class="container">
+  <h2>Stock Market App</h2>
+  <app-create-stock (stockAdded)="onStockAdded($event)"></app-create-stock>
+  <app-stock-list [stocks]="stocks"></app-stock-list>
+</div>

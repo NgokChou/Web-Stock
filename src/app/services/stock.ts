@@ -19,37 +19,27 @@ export class StockService {
 
   getStock(code: string): Observable<Stock> {
     const found = this.stocks.find(s => s.code === code);
-    if (found) {
-      return of(found);
-    } else {
-      return throwError(() => new Error(`Stock ${code} not found`));
-      // throwError() tạo Observable bị lỗi
-    }
+    if (found) return of(found);
+    return throwError(() => new Error(`Không tìm thấy stock: ${code}`));
   }
 
    createStock(stock: Stock): Observable<Stock> {
     const exists = this.stocks.find(s => s.code === stock.code);
-    if (exists) {
-      return throwError(() => new Error(`Stock với code ${stock.code} đã tồn tại`));
-    }
+    if (exists) return throwError(() => new Error(`Stock ${stock.code} đã tồn tại`));
     this.stocks.push(stock);
     return of(stock);
   }
 
   updateStock(stock: Stock): Observable<Stock> {
     const index = this.stocks.findIndex(s => s.code === stock.code);
-    if (index === -1) {
-      return throwError(() => new Error(`Stock ${stock.code} không tồn tại`));
-    }
+    if (index === -1) return throwError(() => new Error(`Không tìm thấy stock: ${stock.code}`));
     this.stocks[index] = stock;
     return of(stock);
   }
 
   deleteStock(code: string): Observable<boolean> {
     const index = this.stocks.findIndex(s => s.code === code);
-    if (index === -1) {
-      return throwError(() => new Error(`Stock ${code} không tồn tại`));
-    }
+    if (index === -1) return throwError(() => new Error(`Không tìm thấy stock: ${code}`));
     this.stocks.splice(index, 1);
     return of(true);
   }
