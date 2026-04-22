@@ -32,10 +32,10 @@ export class CreateStock {
   }
 
   onSubmit() {
-    const formValue = this.stockForm.value;
+    const formValue = this.stockForm.value; //lấy toàn bộ giá trị các field trong form
 
     // Tạo object Stock từ dữ liệu form
-    const newStock = new Stock(
+    const newStock = new Stock( 
       formValue.name,
       formValue.code,
       formValue.price,

@@ -20,5 +20,5 @@ export class App {
 
   onStockAdded(stock: Stock) {
     this.stocks.push(stock); // ← nhận từ CreateStock, đẩy xuống StockList
-  }
+  } 
 }
