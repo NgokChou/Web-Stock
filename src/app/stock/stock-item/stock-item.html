@@ -12,7 +12,7 @@
   <div class="exchange">{{ stock.exchange }}</div>
 
   <button (click)="toggleFavorite($event)"
-          [disabled]="stock.favorite">
-    Add to Favorite
-  </button>
+          *ngIf="!stock.favorite">Add to Favorite</button>
+  <button (click)="toggleFavorite($event)"
+          *ngIf="stock.favorite">Remove from Favorite</button>
 </div>
