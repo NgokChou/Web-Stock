@@ -1,9 +1,8 @@
 
 
 <div class="stock-container">
-  <div class="name">
-    {{ stock.name + ' (' + stock.code + ')' }}
-  </div>
+  <div class="name">{{ stock.name + ' (' + stock.code + ')' }}</div>
+  
 
   <div class="price"
        [class]="stock.isPositiveChange() ? 'positive' : 'negative'">
