@@ -1,9 +1,10 @@
 import { Component, input, Input } from '@angular/core';
 import { Stock } from '../../model/stock';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-stock-item',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './stock-item.html',
   styleUrl: './stock-item.css',
 })
