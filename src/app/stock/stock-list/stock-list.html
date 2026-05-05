@@ -1,5 +1,17 @@
+<!-- stock-list.html -->
+
 <h1>Stock Market App</h1>
 
+<!-- Ô tìm kiếm -->
+<div class="search-bar">
+  <input
+    type="text"
+    placeholder="Tìm theo tên hoặc mã cổ phiếu..."
+    [(ngModel)]="keyword"
+    (input)="onSearch()">
+</div>
+
+<!-- Listview -->
 <div class="stock-list">
   <app-stock-item
     *ngFor="let stock of stocks"
@@ -8,4 +20,9 @@
     (onUpdate)="handleUpdate($event)"
     (onDetail)="handleDetail($event)">
   </app-stock-item>
+
+  <!-- Hiển thị khi không tìm thấy -->
+  <div *ngIf="stocks.length === 0" class="empty">
+    Không tìm thấy cổ phiếu nào.
+  </div>
 </div>
