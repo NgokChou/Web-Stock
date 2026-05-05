@@ -1,1 +1,40 @@
-<p>detail-dialog works!</p>
+<!-- detail-dialog.html -->
+
+<div class="overlay" (click)="onClose.emit()">
+  <div class="dialog" (click)="$event.stopPropagation()">
+
+    <h3>Chi tiết cổ phiếu</h3>
+
+    <table>
+      <tr>
+        <td>Tên</td>
+        <td>{{ stock.name }}</td>
+      </tr>
+      <tr>
+        <td>Mã</td>
+        <td>{{ stock.code }}</td>
+      </tr>
+      <tr>
+        <td>Giá hiện tại</td>
+        <td [class]="stock.isPositiveChange() ? 'positive' : 'negative'">
+          $ {{ stock.price }}
+        </td>
+      </tr>
+      <tr>
+        <td>Giá trước</td>
+        <td>$ {{ stock.previousPrice }}</td>
+      </tr>
+      <tr>
+        <td>Sàn</td>
+        <td>{{ stock.exchange }}</td>
+      </tr>
+      <tr>
+        <td>Yêu thích</td>
+        <td>{{ stock.favorite ? 'Có' : 'Không' }}</td>
+      </tr>
+    </table>
+
+    <button class="btn-close" (click)="onClose.emit()">Đóng</button>
+
+  </div>
+</div>
