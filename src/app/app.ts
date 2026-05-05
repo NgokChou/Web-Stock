@@ -3,6 +3,7 @@ import { Stock } from './model/stock';
 import { StockList } from './stock/stock-list/stock-list';
 import { CreateStock } from './stock/create-stock/create-stock';
 import { StockItem } from './stock/stock-item/stock-item';
+import { StockService } from './services/stock';
 
 @Component({
   selector: 'app-root',
@@ -11,14 +12,9 @@ import { StockItem } from './stock/stock-item/stock-item';
   styleUrl: './app.css'
 })
 export class App {
-  // Danh sách cổ phiếu đặt ở CHA — dùng chung cho cả 2 con
-  stocks: Stock[] = [
-    new Stock('Apple', 'AAPL', 100, 120, 'NASDAQ'),
-    new Stock('Google', 'GOOG', 200, 180, 'NASDAQ'),
-    new Stock('Microsoft', 'MSFT', 150, 140, 'NASDAQ'),
-  ];
+  constructor(private stockService: StockService) {}
 
-  onStockAdded(stock: Stock) {
-    this.stocks.push(stock); // ← nhận từ CreateStock, đẩy xuống StockList
-  } 
+  onStockAdded(stock: Stock): void {
+    this.stockService.addStock(stock); // ← đẩy vào Service, StockList tự cập nhật
+  }
 }
