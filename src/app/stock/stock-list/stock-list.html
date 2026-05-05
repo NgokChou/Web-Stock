@@ -1,8 +1,11 @@
 <h1>Stock Market App</h1>
 
-<div class="stock-grid">
-  <app-stock-item 
+<div class="stock-list">
+  <app-stock-item
     *ngFor="let stock of stocks"
-    [stock]="stock">
+    [stock]="stock"
+    (onDelete)="handleDelete($event)"
+    (onUpdate)="handleUpdate($event)"
+    (onDetail)="handleDetail($event)">
   </app-stock-item>
 </div>
