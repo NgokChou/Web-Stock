@@ -1,7 +1,9 @@
-import { Component, Input } from '@angular/core';
-import { Stock } from '../../model/stock';
-import { StockItem } from '../stock-item/stock-item';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { StockItem } from '../stock-item/stock-item';
+import { StockService } from '../../services/stock';
+import { Stock } from '../../model/stock';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-stock-list',
@@ -9,11 +11,20 @@ import { CommonModule } from '@angular/common';
   templateUrl: './stock-list.html',
   styleUrl: './stock-list.css',
 })
-export class StockList {
+export class StockList implements OnInit, OnDestroy {
 
-  @Input() stocks: Stock[] = [];
+  stocks: Stock[] = [];
+  private sub!: Subscription;
 
-  onDeleteStock(index: number) {
-    this.stocks.splice(index, 1);
+  constructor(private stockService: StockService) {}
+
+  ngOnInit(): void {
+    this.sub = this.stockService.getStocks().subscribe(data => {
+      this.stocks = data; // ← lấy từ Service
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }
