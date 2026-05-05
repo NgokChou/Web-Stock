@@ -14,14 +14,19 @@ import { Subscription } from 'rxjs';
 })
 export class StockList implements OnInit, OnDestroy {
 
+  allStocks: Stock[] = [];
   stocks: Stock[] = []; //danh sách hiển thị ở con, lấy từ Service
   keyword: string = ''; //từ khóa tìm kiếm
+
+  selectedStock: Stock | null = null;   
+  updatingStock: Stock | null = null;   
   private sub!: Subscription;
 
   constructor(private stockService: StockService) {}
 
   ngOnInit(): void {
     this.sub = this.stockService.stocks$.subscribe(data => {
+      this.allStocks = data;
       this.stocks = this.filterStocks(data); // lọc lại mỗi khi data thay đổi
     });
   }
@@ -31,9 +36,7 @@ export class StockList implements OnInit, OnDestroy {
   }
 
   onSearch(): void {
-    this.sub = this.stockService.stocks$.subscribe(data => {
-      this.stocks = this.filterStocks(data); 
-    });
+    this.stocks = this.filterStocks(this.allStocks);
   }
 
   private filterStocks(data: Stock[]): Stock[] {
@@ -49,13 +52,24 @@ export class StockList implements OnInit, OnDestroy {
     this.stockService.deleteStock(code);
   }
 
-  handleUpdate(stock: Stock): void {
-    // ← câu 5 sẽ mở dialog ở đây
-    console.log('Update:', stock);
+  handleDetail(stock: Stock): void {
+    this.selectedStock = stock; // mở DetailDialog
   }
 
-  handleDetail(stock: Stock): void {
-    // ← câu 5 sẽ mở dialog ở đây
-    console.log('Detail:', stock);
+  handleUpdate(stock: Stock): void {
+    this.updatingStock = stock; // mở UpdateDialog
+  }
+
+  onDetailClose(): void {
+    this.selectedStock = null; // đóng DetailDialog
+  }
+
+  onUpdateClose(): void {
+    this.updatingStock = null; // đóng UpdateDialog
+  }
+
+  onUpdateSave(updated: Stock): void {
+    this.stockService.updateStock(updated);
+    this.updatingStock = null; // lưu xong thì đóng
   }
 }
