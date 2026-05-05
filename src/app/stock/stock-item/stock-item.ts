@@ -1,18 +1,16 @@
-import { Component, input, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter, output } from '@angular/core';
 import { Stock } from '../../model/stock';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-stock-item',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './stock-item.html',
   styleUrl: './stock-item.css',
 })
 export class StockItem {
   @Input() stock!:Stock;
 
-  toggleFavorite(event: Event) {
-    this.stock.favorite = !this.stock.favorite;
-    console.log('Add to fav');
-  }
+  @Output() onDelete = new EventEmitter<string>();
+  @Output() onUpdate = new EventEmitter<Stock>();
+  @Output() onDetail = new EventEmitter<Stock>();
 }
