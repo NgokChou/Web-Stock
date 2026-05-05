@@ -1,35 +1,35 @@
-<!-- update-dialog.html -->
-
 <div class="overlay" (click)="onClose.emit()">
   <div class="dialog" (click)="$event.stopPropagation()">
-
     <h3>Cập nhật cổ phiếu</h3>
+    <p>Mã: <strong>{{ stock.code }}</strong></p>
 
-    <form [formGroup]="stockForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
 
-      <div class="form-group">
-        <label>Tên</label>
+      <div class="field">
+        <label>Tên cổ phiếu</label>
         <input type="text" formControlName="name">
-        <div class="error" *ngIf="stockForm.get('name')?.invalid && stockForm.get('name')?.touched">
+        <div class="error"
+          *ngIf="updateForm.get('name')?.invalid && updateForm.get('name')?.touched">
           Tên là bắt buộc
         </div>
       </div>
 
-      <div class="form-group">
-        <label>Mã</label>
-        <input type="text" formControlName="code">
-      </div>
-
-      <div class="form-group">
-        <label>Giá</label>
+      <div class="field">
+        <label>Giá hiện tại ($)</label>
         <input type="number" formControlName="price">
-        <div class="error" *ngIf="stockForm.get('price')?.invalid && stockForm.get('price')?.touched">
+        <div class="error"
+          *ngIf="updateForm.get('price')?.invalid && updateForm.get('price')?.touched">
           Giá phải là số dương
         </div>
       </div>
 
-      <div class="form-group">
-        <label>Sàn</label>
+      <div class="field">
+        <label>Giá trước đó ($)</label>
+        <input type="number" formControlName="previousPrice">
+      </div>
+
+      <div class="field">
+        <label>Sàn giao dịch</label>
         <select formControlName="exchange">
           <option value="NASDAQ">NASDAQ</option>
           <option value="NYSE">NYSE</option>
@@ -37,12 +37,11 @@
         </select>
       </div>
 
-      <div class="dialog-actions">
-        <button type="button" class="btn-cancel" (click)="onClose.emit()">Hủy</button>
-        <button type="submit" class="btn-save" [disabled]="stockForm.invalid">Lưu</button>
+      <div class="actions">
+        <button type="button" (click)="onClose.emit()">Hủy</button>
+        <button type="submit" [disabled]="updateForm.invalid">Lưu</button>
       </div>
 
     </form>
-
   </div>
 </div>
