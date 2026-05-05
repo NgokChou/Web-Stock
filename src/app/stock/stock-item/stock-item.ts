@@ -15,7 +15,8 @@ export class StockItem {
   @Output() onUpdate = new EventEmitter<Stock>();
   @Output() onDetail = new EventEmitter<Stock>();
 
-  toggleFavorite(): void {
-  this.stock.favorite = !this.stock.favorite;
-}
+  toggleFavorite(event: Event) {
+    this.stock.favorite = !this.stock.favorite;
+    console.log('Add to fav');
+  }
 }
