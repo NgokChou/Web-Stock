@@ -5,10 +5,12 @@ import { StockItem } from '../stock-item/stock-item';
 import { StockService } from '../../services/stock';
 import { Stock } from '../../model/stock';
 import { Subscription } from 'rxjs';
+import { UpdateDialog } from '../update-dialog/update-dialog';
+import { DetailDialog } from '../detail-dialog/detail-dialog';
 
 @Component({
   selector: 'app-stock-list',
-  imports: [CommonModule, FormsModule, StockItem],
+  imports: [CommonModule, FormsModule, StockItem, DetailDialog, UpdateDialog],
   templateUrl: './stock-list.html',
   styleUrl: './stock-list.css',
 })
@@ -52,13 +54,15 @@ export class StockList implements OnInit, OnDestroy {
     this.stockService.deleteStock(code);
   }
 
-  handleDetail(stock: Stock): void {
-    this.selectedStock = stock; // mở DetailDialog
-  }
+ handleDetail(stock: Stock): void {
+  console.log('handleDetail gọi được:', stock);  
+  this.selectedStock = stock;
+}
 
-  handleUpdate(stock: Stock): void {
-    this.updatingStock = stock; // mở UpdateDialog
-  }
+handleUpdate(stock: Stock): void {
+  console.log('handleUpdate gọi được:', stock);  
+  this.updatingStock = stock;
+}
 
   onDetailClose(): void {
     this.selectedStock = null; // đóng DetailDialog

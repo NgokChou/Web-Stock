@@ -26,3 +26,15 @@
     Không tìm thấy cổ phiếu nào.
   </div>
 </div>
+<app-detail-dialog
+  *ngIf="selectedStock"
+  [stock]="selectedStock"
+  (onClose)="onDetailClose()">
+</app-detail-dialog>
+
+<app-update-dialog
+  *ngIf="updatingStock"
+  [stock]="updatingStock"
+  (onClose)="onUpdateClose()"
+  (onSave)="onUpdateSave($event)">
+</app-update-dialog>
