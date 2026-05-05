@@ -27,4 +27,18 @@ export class StockList implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
+
+  handleDelete(code: string): void {
+    this.stockService.deleteStock(code);
+  }
+
+  handleUpdate(stock: Stock): void {
+    // ← câu 5 sẽ mở dialog ở đây
+    console.log('Update:', stock);
+  }
+
+  handleDetail(stock: Stock): void {
+    // ← câu 5 sẽ mở dialog ở đây
+    console.log('Detail:', stock);
+  }
 }
