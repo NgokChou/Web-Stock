@@ -1,18 +1,32 @@
+<!-- stock-item.html -->
 
+<div class="stock-row">
 
-<div class="stock-container">
-  <div class="name">{{ stock.name + ' (' + stock.code + ')' }}</div>
-  
+  <div class="stock-info">
+    <span class="stock-name">{{ stock.name + ' (' + stock.code + ')' }}</span>
+    <span class="stock-exchange">{{ stock.exchange }}</span>
+  </div>
 
-  <div class="price"
+  <div class="stock-price"
        [class]="stock.isPositiveChange() ? 'positive' : 'negative'">
     $ {{ stock.price }}
   </div>
 
-  <div class="exchange">{{ stock.exchange }}</div>
+  <div class="stock-actions">
+    <button class="btn btn-fav"
+            (click)="toggleFavorite($event)"
+            *ngIf="!stock.favorite">
+      Add to Favorite
+    </button>
+    <button class="btn btn-fav"
+            (click)="toggleFavorite($event)"
+            *ngIf="stock.favorite">
+      Remove from Favorite
+    </button>
 
-  <button (click)="toggleFavorite($event)"
-          *ngIf="!stock.favorite">Add to Favorite</button>
-  <button (click)="toggleFavorite($event)"
-          *ngIf="stock.favorite">Remove from Favorite</button>
+    <button class="btn btn-detail" (click)="onDetail.emit(stock)">Chi tiết</button>
+    <button class="btn btn-update" (click)="onUpdate.emit(stock)">Sửa</button>
+    <button class="btn btn-delete" (click)="onDelete.emit(stock.code)">Xóa</button>
+  </div>
+
 </div>

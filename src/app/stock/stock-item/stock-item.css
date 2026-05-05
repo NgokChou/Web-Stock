@@ -1,14 +1,41 @@
-.stock-container {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px;
-  /* Bỏ width cố định nếu có, để nó tự fill theo grid */
-  width: 100%;
-  box-sizing: border-box;
+/* stock-item.css */
+
+.stock-row {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  border-bottom: 0.5px solid #ccc;
+  gap: 12px;
 }
-.positive {
-  color: green;
+
+.stock-info {
+  display: flex;
+  flex: 1;
+  gap: 12px;
+  align-items: center;
 }
-.negative {
-  color: red;
+
+.stock-name { font-weight: 500; min-width: 100px; }
+.stock-code { color: #888; font-size: 13px; min-width: 60px; }
+.stock-exchange { color: #888; font-size: 13px; }
+
+.stock-price {
+  min-width: 80px;
+  text-align: right;
+  font-weight: 500;
 }
+.positive { color: green; }
+.negative { color: red; }
+
+.stock-actions { display: flex; gap: 6px; }
+
+.btn {
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+}
+.btn-detail { background: #e8f0fe; color: #1a56db; }
+.btn-update { background: #fef3c7; color: #92400e; }
+.btn-delete { background: #fee2e2; color: #991b1b; }
