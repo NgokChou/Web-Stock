@@ -1,1 +1,48 @@
-<p>update-dialog works!</p>
+<!-- update-dialog.html -->
+
+<div class="overlay" (click)="onClose.emit()">
+  <div class="dialog" (click)="$event.stopPropagation()">
+
+    <h3>Cập nhật cổ phiếu</h3>
+
+    <form [formGroup]="stockForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label>Tên</label>
+        <input type="text" formControlName="name">
+        <div class="error" *ngIf="stockForm.get('name')?.invalid && stockForm.get('name')?.touched">
+          Tên là bắt buộc
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Mã</label>
+        <input type="text" formControlName="code">
+      </div>
+
+      <div class="form-group">
+        <label>Giá</label>
+        <input type="number" formControlName="price">
+        <div class="error" *ngIf="stockForm.get('price')?.invalid && stockForm.get('price')?.touched">
+          Giá phải là số dương
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Sàn</label>
+        <select formControlName="exchange">
+          <option value="NASDAQ">NASDAQ</option>
+          <option value="NYSE">NYSE</option>
+          <option value="NSE">NSE</option>
+        </select>
+      </div>
+
+      <div class="dialog-actions">
+        <button type="button" class="btn-cancel" (click)="onClose.emit()">Hủy</button>
+        <button type="submit" class="btn-save" [disabled]="stockForm.invalid">Lưu</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
