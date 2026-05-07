@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { Stock } from './model/stock';
 import { StockList } from './stock/stock-list/stock-list';
 import { CreateStock } from './stock/create-stock/create-stock';
-import { StockItem } from './stock/stock-item/stock-item';
 
 @Component({
   selector: 'app-root',
-  imports: [StockItem, CreateStock, StockList],
+  imports: [ CreateStock, StockList],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
